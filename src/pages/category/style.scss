@@ -1,0 +1,47 @@
+// 主题部分
+.main{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left:0;
+    right:0;
+    top:80rpx;
+    bottom: 0;
+    // flex-shrink: initial;
+    // flex-shrink:
+    .left{
+        width: 200rpx;
+        height: 100%;
+        background-color:#f6f6f6;
+        // 让内容不会被压缩
+        flex-shrink: 0;
+        .left-item{
+            width: 200rpx;
+            height: 100rpx;
+            text-align: center;
+            line-height: 100rpx;
+            position: relative;
+           
+        }
+        .active{
+            color:red;
+            background-color: #fff;
+            &:before{
+                display: block;
+                content: "";
+                width: 4px;
+                height:60rpx;
+                background-color: red;
+                position: absolute;
+                left:0;
+                top:20rpx;
+            }
+
+        }
+    }
+    .right{
+        flex:1;
+        height: 100%;
+        background-color: yellow;
+    }
+}

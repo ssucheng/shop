@@ -1,97 +1,159 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
+  <div>
+    <!-- 搜索框 -->
+     <Search/>
+    <!-- 轮播图 -->
+    <div>
+      <swiper
+        :indicator-dots="indicatorDots"
+        :autoplay="autoplay"
+        :interval="interval"
+        :duration="duration"
+        :circular="circular"
+      >
+        <block v-for="(item, index) in imgUrls" :key="index">
+          <swiper-item>
+            <image
+              :src="item.image_src"
+              class="slide-image"
+            />
+          </swiper-item>
+        </block>
+      </swiper>
+    </div>
+    <!-- 分类 -->
+    <div class="classify">
+      <div class="classify-item"  v-for="(item,index) in classifyImg" :key="index">
+        <img :src="item.image_src" alt="">
       </div>
     </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
+    <!-- 楼层数据 -->
+    <div class="floor">
+        <!-- 每个楼层 -->
+      <div class="floor-item" v-for="(item,index) in floorList" :key="index">
+          <!-- 标题 -->
+        <div class="floor-title" >
+          <img :src="item.floor_title.image_src" alt="">
+        </div>
+          <!-- 产品 -->
+        <div class="product">
+            <!-- 左侧大图 -->
+          <div class="left">
+            <img :src="item.product_list[0].image_src" alt="">
+          </div>
+          <!-- 右侧小图 -->
+          <div class="right">
+            <div class="right-item" v-if="index1" v-for="(item1,index1) in item.product_list" :key="index1">
+              <img :src="item1.image_src" alt="">
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
 
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
-
+import {request} from '../../utils/request.js'
+import Search from '../../components/Search.vue'
 export default {
-  data () {
-    return {
-      motto: 'Hello World',
-      userInfo: {}
+  data() {
+    return{
+      // 无缝轮播 可以左划又划
+      circular:true,
+      // 有没有点
+      indicatorDots:true,
+      // 自动轮播
+      autoplay:true,
+      interval:5000,
+      duration:1000,
+      // 轮播图的数据
+      imgUrls:[],
+      // 服务器地址 第一个服务器地址 容易出错 视情况而定
+      baseUrl:"https://itjustfun.cn",
+      baseUrl1:"https://www.zhengzhicheng.cn",
+      // 分类数据
+      classifyImg:[],
+      // 楼层数据
+      floorList:[]
     }
   },
-
+  // 复用组件搜索
   components: {
-    card
+    Search
   },
-
-  methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
+  mounted() {
+    request(this.baseUrl1+"/api/public/v1/home/swiperdata","POST").then((res)=>{
+      console.log(res)
+    })
+    // 测试async
+    this.getData()
+    // 测试封装的函数
+    // request(this.baseUrl1+"/api/public/v1/home/swiperdata").then((res)=>{
+    //   console.log(res)
+    // })
+    // // 请求轮播图数据
+    // wx.request({
+    //   url: this.baseUrl+"/api/public/v1/home/swiperdata",
+    //   success:(res) =>{
+    //     // console.log(res);
+    //     const {data} = res.data
+    //     this.imgUrls = data
+    //     // console.log(this.imgUrls)
+    //   }
+    // });
+    // 分类数据
+    // wx.request({
+    //   url:this.baseUrl1+"/api/public/v1/home/catitems",
+    //   success:(res) =>{
+    //     // console.log(res)
+    //     const {message} = res.data
+    //     this.classifyImg = message
+    //     // console.log(message)
+    //   }
+    // });
+    // 楼层数据
+    // wx.request({
+    //   url:this.baseUrl1+"/api/public/v1/home/floordata",
+    //   success:(res) =>{
+    //     // console.log(res)
+    //     const {message} = res.data
+    //     this.floorList = message;
+    //     // console.log(this.floorList)
+    //   }
+    // })
+  },
+  methods:{
+    //自定义async
+    //用同步的方法处理异步请求
+    async getData(){
+      //await 后面跟着promise对象 返回的是then（）函数中 res的值
+      // 轮播图数据
+    try{
+       let res = await request(this.baseUrl1+"/api/public/v1/home/swiperdata");
+       const {message} = res.data
+       this.imgUrls = message
+    }catch(err){console.log(err)}
+    //  请求分类数据
+    try{
+       let res = await request(this.baseUrl1+"/api/public/v1/home/catitems");
+       const {message} = res.data
+       this.classifyImg = message
+    }catch(err){console.log(err)}
+     // 楼层数据
+     try{
+       let res = await request(this.baseUrl1+"/api/public/v1/home/floordata");
+       const {message} = res.data
+       this.floorList = message
+    }catch(err){console.log(err)}
     }
-  },
-
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+   
   }
-}
+};
 </script>
 
-<style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-
+<style lang="scss" scoped>
+ @import "style.scss";
 </style>

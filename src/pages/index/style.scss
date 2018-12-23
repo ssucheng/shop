@@ -1,0 +1,66 @@
+// 轮播图
+.search-wrapper {
+  background-color: #dd434f;
+  padding: 5px;
+  .search-input {
+    background-color: white;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #ccc;
+  }
+}
+.slide-image{
+  width: 790rpx;
+  height: 390rpx;
+}
+// 分类 
+.classify{
+    margin-top:24rpx;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 29rpx;
+  .classify-item{
+    img{
+      width:128rpx;
+      height: 128rpx;
+    }
+  }
+}
+// 楼层数据
+.floor{
+  .floor-item{
+   
+    .floor-title{
+      img{
+        width: 100%;
+        height: 80rpx;
+      }
+    }
+    .product{
+      display: flex;
+      padding:20rpx 16rpx; 
+      .left{
+        img{
+          width: 232rpx;
+          height: 388rpx;
+        }
+      }
+      .right{
+        margin-left:10rpx;
+        display: flex;
+        flex-wrap: wrap;
+        flex:1;
+        justify-content: space-between;
+        .right-item{
+          img{
+            width: 232rpx;
+            height: 188rpx;
+          }
+        }
+      }
+    }
+  }
+}
