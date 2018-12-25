@@ -1,3 +1,6 @@
+.goods_detail{
+    position: relative;
+}
 swiper{
     height: 720rpx;
 }
@@ -14,6 +17,7 @@ swiper{
 // 描叙
 .describe{
     padding:0 0 0 20rpx;
+    margin-bottom:250rpx;
     .describe-price{
         height: 120rpx;
         color: red;
@@ -22,7 +26,9 @@ swiper{
     }
     .describe-title{
         display: flex;
+        height: 80rpx;
         .left{
+            // height: 80rpx;
             font-size:33rpx;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -32,8 +38,60 @@ swiper{
         }
         .right{
             width:130rpx;
-            height: 80rpx;
+            // height: 80rpx;
             flex-shrink: 0;
+            font-size:24rpx;
+            text-align: center;
+        }
+    }
+}
+// 底部
+.footer{
+    position: fixed;
+    left:0;
+    bottom:0;
+    display: flex;
+    width: 100%;
+    background: white;
+    // justify-content: space-between;
+    .contact{
+        width:20%;
+        height: 100%;
+        position: absolute;
+        left:0;
+        padding:0;
+        margin:0;
+        bottom: 0;
+        opacity: 0;
+
+    }
+    .footer-left{
+        width: 20%;
+        height: 100rpx;
+        font-size:22rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .icon-kefu{
+            font-size: 34rpx;
+        }
+        .icon-gouwuche{
+            font-size:34rpx;
+        }
+
+    }
+    .footer-right{
+        width:30%;
+        height: 100rpx;
+        font-size:34rpx;
+        background-color: #f4b73f;
+        text-align: center;
+        line-height: 100rpx;
+        color: white;
+        &:last-child{
+            background-color: #eb4450;
         }
     }
 }

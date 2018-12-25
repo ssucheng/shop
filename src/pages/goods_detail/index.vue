@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="goods_detail" >
     <!-- 轮播图 -->
       <div class="swipe">
             <swiper
@@ -29,6 +29,8 @@
                   {{detail.goods_name}}
               </div>
               <div class="right">
+                <span class="iconfont icon-shoucang"></span>
+                <p>收藏</p>
               </div>       
           </div>
       </div>
@@ -43,6 +45,25 @@
          </div>
        </div>
        <!-- 底部栏   -->
+       <div class="footer">
+         <!-- 联系客服的按钮  
+          -->
+          <button class="contact" open-type="contact">联系客服</button>
+          <div class="footer-left" >
+            <span class="iconfont icon-kefu"></span>
+            <p>联系客服</p>
+          </div>
+          <a class="footer-left" href="/pages/cart/main" open-type="switchTab">
+            <span class="iconfont icon-gouwuche"></span>
+            <p>购物车</p>
+          </a>
+          <div class="footer-right">
+            加入购物车
+          </div>
+          <div class="footer-right">
+            立即购买
+          </div>
+       </div>
 
   </div>
 </template>
