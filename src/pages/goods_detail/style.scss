@@ -1,0 +1,39 @@
+swiper{
+    height: 720rpx;
+}
+// 轮播图
+.swipe{
+    width: 100%;
+    height: 720rpx;
+    .slide-image{
+        
+        width: 100%;
+        height: 720rpx;
+    }       
+}
+// 描叙
+.describe{
+    padding:0 0 0 20rpx;
+    .describe-price{
+        height: 120rpx;
+        color: red;
+        font-size:38rpx;
+        line-height: 120rpx;
+    }
+    .describe-title{
+        display: flex;
+        .left{
+            font-size:33rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box; //将元素设为盒子伸缩模型显示
+            -webkit-box-orient: vertical; //伸缩方向设为垂直方向
+            -webkit-line-clamp: 2;  //超出3行隐藏，并显示省略号       
+        }
+        .right{
+            width:130rpx;
+            height: 80rpx;
+            flex-shrink: 0;
+        }
+    }
+}

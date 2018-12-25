@@ -1,0 +1,77 @@
+.search-wrapper{
+    padding:20rpx 10rpx;
+    background-color: #eeeeee;
+    display: flex;
+    // 输入框
+    .search-input{
+        // width:548rpx;
+        width: 100%;
+        height: 60rpx;
+        background-color: white;
+        display: flex;
+        .icon{
+            margin:0 20rpx;
+            display: flex;
+            align-items: center;
+        }
+        input{
+            flex:1;
+            font-size:30rpx;
+            height: 100%;
+            
+
+        }
+    }
+    // 取消按钮
+    .delBtn{
+        flex:1;
+        width: 160rpx;
+        height: 60rpx;
+        // margin:0 20rpx 0 20rpxll;
+        margin-left:20rpx;
+        button{
+           width: 160rpx;
+            height: 100%;
+            font-size:30rpx;
+            line-height: 60rpx;
+            
+        }
+    }
+}
+// 历史搜索
+.history{
+    .history-item{
+        display: flex;
+        justify-content: space-between;
+        margin:0 20rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        p{
+            font-size:28rpx;
+            color:#333333;
+            
+        }
+        icon{
+            display: block;
+            display: flex;
+            align-items: center;
+        }
+        
+    }
+}
+// 历史记录
+.history-goods{
+    display: flex;
+    flex-wrap: wrap;
+    // margin-left:20rpx;
+    // justify-content: space-between;
+    .good-item{
+        height: 64rpx;
+        line-height: 64rpx;
+        padding:20rpx 24rpx;
+        font-size:26rpx;
+        background-color: #dddddd;
+        margin:10rpx 18rpx;
+
+    }
+}

@@ -1,0 +1,77 @@
+.search_wraper {
+    background-color:#eeeeee;
+    padding: 32rpx 16rpx;
+    .search_input {
+    //   margin-left:5px;
+      padding-left:5px;
+      background-color: white;
+      height: 60rpx;
+      line-height: 60rpx;
+      font-size: 15px;
+      color: #ccc;
+    }
+  }
+//   排序栏
+.goodsTab{
+    display: flex;
+    border-bottom: 1px solid #dddddd  ;
+    .goodsTab-item{
+        flex:1;
+        height: 90rpx;
+        line-height: 90rpx;
+        text-align: center;
+        font-size:30rpx;
+       
+    }
+    .active{
+        color:red;
+    }
+}
+// 产品列表
+.product{
+    .product-item{
+        display: flex;
+        justify-content: space-around;
+        height: 240rpx;
+        padding:20rpx 20rpx 0rpx;
+        margin-left:20rpx;
+        border-bottom: 1px solid #dddddd;
+        .item-img{
+            width:200rpx;
+            height: 240rpx;
+            flex-shrink: 0;
+            img{
+                width:200rpx;
+                height: 200rpx;
+            }
+            
+        }
+        .item-text{
+            flex: 1;
+            padding-left:20rpx;
+            height: 200rpx;  
+            font-size:26rpx;
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between;
+             p{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box; //将元素设为盒子伸缩模型显示
+                -webkit-box-orient: vertical; //伸缩方向设为垂直方向
+                -webkit-line-clamp: 2;  //超出3行隐藏，并显示省略号   
+            }
+            .price{
+                color:#eb4450;
+                span:nth-of-type(1){
+                    font-size:24rpx;
+                    color:#eb4450;
+                }
+                span:nth-of-type(2){
+                    font-size:36rpx;
+                    color: #eb4450;
+                }
+            }
+        }
+    }
+}
