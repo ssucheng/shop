@@ -57,10 +57,10 @@
             <span class="iconfont icon-gouwuche"></span>
             <p>购物车</p>
           </a>
-          <div class="footer-right">
+          <div class="footer-right" @click="handleAddCart">
             加入购物车
           </div>
-          <div class="footer-right">
+          <div class="footer-right" @click="handleAddCart">
             立即购买
           </div>
        </div>
@@ -91,7 +91,8 @@ export default {
       // 解构的总体数据
       detail:{},
       // 传过来的商品id
-      goodsId:0
+      goodsId:0,
+     
     }
   },
   // 接受传递过来的参数
@@ -111,6 +112,26 @@ export default {
         this.detail = data
         console.log(this.detail)
         
+      })
+    },
+    // 将详情页的商品添加到本地存储中
+    handleAddCart(){
+      // console.log("detail")
+      // 1.0首先有可能本地中已经了商品数据 所以我们先获取一下 有可能还没有
+      let goods = wx.getStorageSync("goods") || {}
+      // 2.0商品数据中没有商品数量和商品被选择的值
+      this.detail.num = 1,
+      this.detail.selected = true,
+        // 3.0 将数据添加到本地存储中 为了能分别是具体那个数据 我们用goodId来区别
+      goods[this.goodsId] = this.detail
+      // console.log(goods)
+      // console.log(123)
+      wx.setStorageSync("goods",goods)
+      //弹出一个消息提示框
+      wx.showToast({
+        title:"加入购物车成功",
+         icon: 'success',
+        duration: 2000
       })
     }
   }
