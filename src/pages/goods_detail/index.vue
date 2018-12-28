@@ -133,6 +133,10 @@ export default {
          icon: 'success',
         duration: 2000
       })
+      // 跳转到购物车页面
+    //  wx.navigateTo({
+    //             url:`/pages/cart/main?keyworld=${name}`
+    //         })
     }
   }
 };
